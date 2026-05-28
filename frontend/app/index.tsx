@@ -6,26 +6,17 @@ export default function Index() {
     <View style={styles.container}>
       <Text style={styles.title}>TG Supplements</Text>
 
-      <Text style={styles.subtitle}>
-        Mini loja de suplementos
-      </Text>
+      <Text style={styles.subtitle}>Mini loja de suplementos</Text>
 
-      <TouchableOpacity
-        style={styles.button}
-        onPress={() => router.push("/login")}
-      >
-        <Text style={styles.buttonText}>
-          Entrar
-        </Text>
+      <TouchableOpacity style={styles.button} onPress={() => router.push("/login")}>
+        <Text style={styles.buttonText}>Entrar</Text>
       </TouchableOpacity>
 
       <TouchableOpacity
         style={styles.buttonSecondary}
         onPress={() => router.push("/signup")}
       >
-        <Text style={styles.buttonText}>
-          Criar conta
-        </Text>
+        <Text style={styles.buttonText}>Criar conta</Text>
       </TouchableOpacity>
     </View>
   );
@@ -39,20 +30,17 @@ const styles = StyleSheet.create({
     alignItems: "center",
     padding: 24,
   },
-
   title: {
     color: "#22c55e",
-    fontSize: 38,
+    fontSize: 36,
     fontWeight: "bold",
   },
-
   subtitle: {
-    color: "#ffffff",
+    color: "#fff",
     fontSize: 18,
     marginTop: 12,
     marginBottom: 40,
   },
-
   button: {
     backgroundColor: "#22c55e",
     width: "100%",
@@ -61,7 +49,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
     marginBottom: 16,
   },
-
   buttonSecondary: {
     backgroundColor: "#1f1f1f",
     width: "100%",
@@ -71,10 +58,9 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: "#22c55e",
   },
-
   buttonText: {
     color: "#fff",
-    fontSize: 16,
     fontWeight: "bold",
+    fontSize: 16,
   },
 });
