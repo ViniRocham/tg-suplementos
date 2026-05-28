@@ -10,16 +10,16 @@ export default function Signup() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  function handleSignup() {
-    const success = signup(name, email, password);
+    async function handleSignup() {
+    const success = await signup(name, email, password);
 
     if (!success) {
-      Alert.alert("Erro", "Preencha todos os campos.");
-      return;
+        Alert.alert("Erro", "Erro ao cadastrar.");
+        return;
     }
 
     router.replace("/home");
-  }
+    }
 
   return (
     <View style={styles.container}>

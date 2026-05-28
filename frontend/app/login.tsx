@@ -9,16 +9,16 @@ export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  function handleLogin() {
-    const success = login(email, password);
+  async function handleLogin() {
+    const success = await login(email, password);
 
     if (!success) {
-      Alert.alert("Erro", "Preencha e-mail e senha.");
-      return;
+        Alert.alert("Erro", "Credenciais inválidas.");
+        return;
     }
 
     router.replace("/home");
-  }
+    }
 
   return (
     <View style={styles.container}>

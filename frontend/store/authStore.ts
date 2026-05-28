@@ -1,6 +1,8 @@
 import { create } from "zustand";
+import { api } from "../services/api";
 
 type User = {
+  id: number;
   name: string;
   email: string;
 };
@@ -8,8 +10,18 @@ type User = {
 type AuthStore = {
   user: User | null;
   token: string | null;
-  login: (email: string, password: string) => boolean;
-  signup: (name: string, email: string, password: string) => boolean;
+
+  login: (
+    email: string,
+    password: string
+  ) => Promise<boolean>;
+
+  signup: (
+    name: string,
+    email: string,
+    password: string
+  ) => Promise<boolean>;
+
   logout: () => void;
 };
 
@@ -17,32 +29,47 @@ export const useAuthStore = create<AuthStore>((set) => ({
   user: null,
   token: null,
 
-  login: (email, password) => {
-    if (!email || !password) return false;
-
-    set({
-      user: {
-        name: "Vinicius Rocha",
+  login: async (email, password) => {
+    try {
+      const response = await api.post("/login", {
         email,
-      },
-      token: "token-fake-tg-suplementos",
-    });
+        password,
+      });
 
-    return true;
+      const { token, user } = response.data;
+
+      set({
+        user,
+        token,
+      });
+
+      return true;
+    } catch (error) {
+      console.log(error);
+      return false;
+    }
   },
 
-  signup: (name, email, password) => {
-    if (!name || !email || !password) return false;
-
-    set({
-      user: {
+  signup: async (name, email, password) => {
+    try {
+      const response = await api.post("/signup", {
         name,
         email,
-      },
-      token: "token-fake-cadastro",
-    });
+        password,
+      });
 
-    return true;
+      const { token, user } = response.data;
+
+      set({
+        user,
+        token,
+      });
+
+      return true;
+    } catch (error) {
+      console.log(error);
+      return false;
+    }
   },
 
   logout: () => {

@@ -2,10 +2,19 @@ import { View, Text, StyleSheet, TouchableOpacity, ScrollView, Alert } from "rea
 import { router } from "expo-router";
 import { useProductStore } from "../../store/productStore";
 import { categories } from "../../data/mockData";
+import { useEffect } from "react";
 
 export default function Products() {
   const products = useProductStore((state) => state.products);
-  const deleteProduct = useProductStore((state) => state.deleteProduct);
+  const deleteProduct = useProductStore(
+  (state) => state.deleteProduct
+);
+
+const fetchProducts = useProductStore(
+  (state) => state.fetchProducts
+);
+
+  
 
   function getCategoryName(categoryId: number) {
     return categories.find((cat) => cat.id === categoryId)?.name || "Sem categoria";
